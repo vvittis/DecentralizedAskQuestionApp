@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "homepage": "https://vvittis.github.io/client",
+  "name": "main",
+  "homepage": "https://vvittis.github.io/main",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
