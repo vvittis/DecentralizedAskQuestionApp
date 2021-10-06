@@ -1,6 +1,6 @@
 {
   "name": "main",
-  "homepage": "https://billethchat.xyz/",
+  "homepage": "https://billethchat.xyz",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
