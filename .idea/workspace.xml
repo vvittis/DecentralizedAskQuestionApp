@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e39c797-9b3a-45d7-99f5-e46ac53ee752" name="Changes" comment="New Commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +76,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633444045820</updated>
-      <workItem from="1633444047431" duration="9002000" />
+      <workItem from="1633444047431" duration="9091000" />
     </task>
     <task id="LOCAL-00001" summary="New Commit">
       <created>1633446886759</created>
