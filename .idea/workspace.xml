@@ -8,11 +8,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/precache-manifest.cf06ce0bba7bbb5a42cdcb81589454e6.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/precache-manifest.8503e862b11957a2eb1515514989d9a9.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service-worker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.61057dbf.chunk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/static/js/main.61057dbf.chunk.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.cache/gh-pages/https!github.com!vvittis!main.git" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/gh-pages/https!github.com!vvittis!main.git" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633444045820</updated>
-      <workItem from="1633444047431" duration="7613000" />
+      <workItem from="1633444047431" duration="8441000" />
     </task>
     <task id="LOCAL-00001" summary="New Commit">
       <created>1633446886759</created>
