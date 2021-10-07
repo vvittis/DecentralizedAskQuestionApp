@@ -1,0 +1,22 @@
+.box {
+    background-image: url('../../repo/banner_background.png');
+    background-repeat: background-repeat;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: 50% 50%;
+    border: 1px solid #4CAF50;
+}
+
+#heading {
+    /*display: flex;*/
+    text-align: left;
+    font-size: 60px;
+    font-family: CustomFont;
+
+}
+
+@font-face {
+    font-family: "CustomFont";
+    src: url("../../repo/customfont.otf")
+}
