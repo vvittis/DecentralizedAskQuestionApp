@@ -1,6 +1,20 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
+
 .main {
     /*background-image: url('../../repo/banner_background.png');*/
     /*background-repeat: no-repeat;*/
     /*packground-position: center center;*/
     /*-fx-background-size: cover;*/
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
 }
+
+.container {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+
+

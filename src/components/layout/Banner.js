@@ -1,33 +1,28 @@
 import classes from './Banner.module.css'
 import React from 'react'
-import Typewriter from "typewriter-effect";
+import Typical from 'react-typical';
 
-class  Banner extends React.Component {
+class Banner extends React.Component {
 
     render() {
         return (
 
-            <div className={classes.box}>
+            <div id={classes.box} className={' p-0 p-sm-5'}>
 
-                <div id={classes.heading} className={'p-0 p-sm-5'}>
+                <div id={classes.heading} className={' p-0 pt-sm-5'}>
 
-                    Chat App where you can <br></br>
-                    <Typewriter
-                    onInit={(typewriter => {
-                        typewriter.typeString("Post")
-                            .pause(2000)
-                            .deleteAll()
-                            .typeString("Comment")
-                            .pause(2000)
-                            .deleteAll()
-                            .typeString("Like")
-                            .start()
-                    })}
-                    />
-
+                    A Chat App <br/> where you can
                 </div>
+                    <div id={classes.type}>
+                        <Typical
+                            loop={1} // Infinity
+                            wrapper={"b"}
+                            steps={[' Post', 1000, ' Comment', 1000, ' Interact', 1000]}
+                        />
+                    </div>
             </div>
         )
     }
 }
+
 export default Banner;
