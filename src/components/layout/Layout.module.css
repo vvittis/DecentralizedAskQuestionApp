@@ -5,16 +5,31 @@
     /*background-repeat: no-repeat;*/
     /*packground-position: center center;*/
     /*-fx-background-size: cover;*/
-    height: 100%;
-    padding: 0px;
-    margin: 0px;
+    overflow: hidden;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+
+
 }
 
 .container {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    min-height:80%;
 }
 
+
+.col4 {
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.col8{
+    height: 50%;
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
 

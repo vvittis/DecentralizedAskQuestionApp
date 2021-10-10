@@ -10,11 +10,11 @@ import PostSection from "../posts/PostSection";
 function Layout(props) {
     return (
 
-        <Container fluid className={classes.container} class={"more-pens"}>
-            <NavigationBar/>
+        <Container fluid className={classes.container} className={"more-pens"}>
+            <NavigationBar account = {props.account} setAccount = {props.setAccount}/>
             <Row className={classes.main}>
-                <Col lg={4}> <Banner/> </Col>
-                <Col lg={8}> <PostSection/> </Col>
+                <Col lg={4} className={classes.col4}> <Banner/> </Col>
+                <Col lg={8} className={classes.col8}> <PostSection  input = {props.account}/> </Col>
             </Row>
 
             <footer id="sticky-footer" className="flex-shrink-0 py-4 bg-dark text-white-50">

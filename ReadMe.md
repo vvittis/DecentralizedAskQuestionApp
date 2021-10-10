@@ -1,12 +1,8 @@
-Compile:              truffle compile
-Migrate:              truffle migrate
-Test contracts:       truffle test
-Test dapp:            cd client && npm test
-Run dev server:       cd client && npm run start
-Build for production: cd client && npm run build
+Truffle & React Decentralized Application on Ethereum TestNet (Rinkeby)
 
+In this project there are implemented the following cases:
 
-
-1. clone
-2. truffle unbox react
-3. 
+1. Create Post 
+2. List all posts (Newest and Most liked)
+3. Tip post through EAS (Ethereum Attestation System)
+4. Comment post

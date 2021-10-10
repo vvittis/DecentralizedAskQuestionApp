@@ -1,0 +1,9 @@
+.button{
+    color: black;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 10px;
+    background-color: #FFC0C7;
+    border: none;
+    border-radius: 16px;
+
+}

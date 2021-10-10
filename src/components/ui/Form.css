@@ -1,0 +1,122 @@
+.writePostContainer {
+    overflow: hidden;
+    margin: 20px;
+    /*width: 90%;*/
+    background: white;
+    border-radius: 6px;
+    padding: 10px;
+    color: #626262
+}
+
+.useProfile {
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.name {
+    margin-bottom: -5px;
+    margin-left: 20px;
+    font-weight: 600;
+    /*position: absolute;*/
+    vertical-align: top;
+    color: #626262;
+}
+
+.postInputContainer {
+    padding-left: 55px;
+    padding-top: 20px;
+}
+
+.postInputContainer textarea {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    background: transparent;
+    resize: none;
+}
+
+.button {
+    float: right;
+    margin: 20px;
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: #1c89ff;
+    border: solid 1px transparent;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
+
+
+.loader {
+    float: right;
+    margin: 15px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    /*margin: 30px auto 0 auto;*/
+    border: solid 2px #424242;
+    border-top: solid 2px #1c89ff;
+    border-radius: 50%;
+    opacity: 0;
+}
+.check {
+    width: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translate3d(-4px, 50px, 0);
+    opacity: 0;
+}
+.check span:nth-child(1) {
+    display: block;
+    width: 10px;
+    height: 2px;
+    background-color: #1c89ff;
+    transform: rotate(45deg);
+}
+.check span:nth-child(2) {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background-color: #1c89ff;
+    transform: rotate(-45deg) translate3d(14px, -4px, 0);
+    transform-origin: 100%;
+}
+.loader.active {
+    animation: loading 2s ease-in-out;
+    animation-fill-mode: forwards;
+}
+.check.active {
+    opacity: 1;
+    transform: translate3d(-4px, 4px, 0);
+    transition: all 0.5s cubic-bezier(0.49, 1.74, 0.38, 1.74);
+    transition-delay: 0.2s;
+}
+@keyframes loading {
+    30% {
+        opacity: 1;
+    }
+    85% {
+        opacity: 1;
+        transform: rotate(1080deg);
+        border-color: #262626;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(1080deg);
+        border-color: #1c89ff;
+    }
+}
