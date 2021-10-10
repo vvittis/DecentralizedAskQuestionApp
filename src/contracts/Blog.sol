@@ -8,7 +8,7 @@ contract Blog {
 
     mapping(uint256 => mapping(uint256 => Comment)) public comments;
     mapping(uint256 => Post) public posts;
-//    Comment [] public comments;
+    //    Comment [] public comments;
     /* Structs */
     struct Comment {
         address author;
@@ -18,6 +18,7 @@ contract Blog {
 
     struct Post {
         uint256 id;
+        string title;
         string content;
         uint256 tipAmount;
         address payable author;
@@ -53,10 +54,11 @@ contract Blog {
 
     /* Functions */
 
-    function createPost(string memory _content) public {
+    function createPost(string memory _title, string memory _content) public {
         require(bytes(_content).length > 0);
         postCount++;
         Post storage post = posts[postCount];
+        post.title = _title;
         post.author = msg.sender;
         post.id = postCount;
         post.content = _content;
@@ -80,14 +82,14 @@ contract Blog {
     }
 
 
-        function tipPost(uint256 _postId) public payable {
-            require(msg.value > 0);
-            Post storage _tippedPost = posts[_postId];
-            _tippedPost.tipAmount += msg.value;
-            address payable author = _tippedPost.author;
-            address(author).transfer(msg.value);
-            emit PostTipped(_tippedPost.id, _tippedPost.content, _tippedPost.tipAmount, _tippedPost.author);
-        }
+    function tipPost(uint256 _postId) public payable {
+        require(msg.value > 0);
+        Post storage _tippedPost = posts[_postId];
+        _tippedPost.tipAmount += msg.value;
+        address payable author = _tippedPost.author;
+        address(author).transfer(msg.value);
+        emit PostTipped(_tippedPost.id, _tippedPost.content, _tippedPost.tipAmount, _tippedPost.author);
+    }
 
 
 }

@@ -4,6 +4,7 @@ import React from 'react'
 
 function PostList(props) {
     return (
+
         <div className={classes.list}>
 
             {props.children}
@@ -11,11 +12,13 @@ function PostList(props) {
             {props.posts.map(post => (
                 <PostItem
                     id={post.id}
+                    title={post.title}
                     content={post.content}
                     tipAmount={post.tipAmount}
                     author={post.author}
                     numberOfComments={post.numberOfComments}
                 />))}
+
 
 
         </div>)

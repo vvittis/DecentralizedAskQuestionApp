@@ -7,49 +7,50 @@ import Blog from '../../abis/Blog.json'
 import PostList from "./PostList";
 import NavigationBar from "../layout/Navbar";
 import Banner from "../layout/Banner";
-import Form from "../ui/Form";
+import FormSection from "../ui/FormSection";
 
 
-class PostSection extends Component<{ account?: string }> {
+class PostSection extends Component<> {
 
     async componentWillMount() {
+
         await this.fetchData()
     }
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            userConnected: false,
-            blogPost: null,
-            postCount: 0,
-            posts: [],
-            loading: true
-        }
-
-        // this.createPost = this.createPost.bind(this)
-        // this.tipPost = this.tipPost.bind(this)
-    }
 
     async fetchData() {
 
         if (window.ethereum) {
+
             window.web3 = new Web3(window.ethereum)
-            // } else if (window.web3) {
-            //     window.web3 = new Web3(window.web3.currentProvider)
-            // }
+            // } else
+            // if (window.web3) {
+            // window.web3 = new Web3(window.web3.currentProvider)
+            // window.web3 = new Web3(window.ethereum)
+            try {
+                this.setState({accountAddress: this.props.input.toString})
+            } catch (e) {
+                console.log("no account yet")
+            }
+
+
             console.log('use effect')
             const web3 = window.web3
+            this.setState({accountAddress: this.props.input})
             const networkId = await web3.eth.net.getId()
             console.log(networkId.toString())
             const networkData = Blog.networks[networkId]
             console.log(networkData)
             if (networkData) {
+                this.setState({loading: false})
+                this.setState({postLoading: false})
                 const blogPost = new web3.eth.Contract(Blog.abi, networkData.address)
-                this.setState({blogPost})
+                this.setState({blogPost: blogPost})
                 const postCount = await blogPost.methods.postCount().call()
-                this.setState({postCount})
-                console.log("Number of Posts: " + postCount)
+                this.setState({postCount: postCount})
+                console.log("Number of Posts: " + this.state.postCount)
                 // Load Posts
+                this.setState({posts: []})
                 for (var i = 1; i <= postCount; i++) {
                     const post = await blogPost.methods.posts(i).call()
                     this.setState({
@@ -58,11 +59,38 @@ class PostSection extends Component<{ account?: string }> {
                 }
                 // Sort posts. Show highest tipped posts first
                 this.setState({
-                    posts: this.state.posts.sort((a, b) => b.tipAmount - a.tipAmount)
+                    posts: this.state.posts.sort((a, b) => b.id - a.id)
                 })
                 this.setState({loading: false})
             }
         }
+
+    }
+
+    async createPost(title, content) {
+        this.setState({postLoading: true})
+        this.state.blogPost.methods.createPost(title, content).send({from: this.props.input.toString()})
+            .once('receipt', (receipt) => {
+                this.fetchData()
+                this.setState({postLoading: false})
+            })
+
+    }
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            accountAddress: '',
+            userConnected: false,
+            blogPost: null,
+            postCount: 0,
+            posts: [],
+            loading: true,
+            postLoading: true
+        }
+
+        this.createPost = this.createPost.bind(this)
+        // this.tipPost = this.tipPost.bind(this)
     }
 
     render() {
@@ -81,24 +109,31 @@ class PostSection extends Component<{ account?: string }> {
                     :
                     (<Container fluid className={classes.containerFluid}>
 
-                            <Row className={classes.rowFinder}>
-                                <Col lg={6} className={classes.containerPost}>
+                        <Row className={classes.rowFinder}>
+                            <Col lg={6} className={classes.containerPost}>
 
-                                    {!this.props.input ? <div/>
-                                        :
-                                        <Form address={this.props.input}/>
-                                    }
-                                    <PostList  posts={this.state.posts}/>
-
-                                </Col>
-                                <Col lg={6}> </Col>
-                            </Row>
-                        </Container>
-
-                    )
-
-                }
+                                {!this.props.input ? <div/>
+                                    :
+                                    <FormSection createPost={this.createPost} address={this.props.input}/>
+                                }
+                                {this.state.postLoading ?
+                                    <div id="loader" className="text-center mt-5"><p>Loading Posts...</p></div> :
+                                    <div className={classes.containerPost}>
+                                        <div className={classes.title}>Posts</div>
+                                        <PostList posts={this.state.posts}/>
+                                        <div className={classes.scrollSection}>
+                                                                <span className={classes.scrollIcon}>
+                                                                       <span className={classes.scrollIconDot}/>
+                                                                </span>
+                                        </div>
+                                    </div>
+                                }
+                            </Col>
+                            <Col lg={6}> </Col>
+                        </Row>
+                    </Container>)}
             </div>
+
         )
     }
 }

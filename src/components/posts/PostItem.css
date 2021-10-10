@@ -1,55 +1,94 @@
-/*.list {*/
-/*    padding: 0;*/
-/*    margin: 0;*/
-/*    height: inherit;*/
-/*}*/
+.list {
+    padding: 0;
+    margin: 0;
+    height: inherit;
+}
 
-/*.buttonComment {*/
-/*    float: right;*/
-/*    display: inline;*/
-/*    position: relative;*/
-/*    padding: 5px 10px;*/
-/*    border-radius: 18px;*/
-/*    background-color: #99CCF2;*/
-/*    border: solid 1px transparent;*/
-/*    color: #fff;*/
-/*    font-size: 18px;*/
-/*    font-weight: 400;*/
-/*    cursor: pointer;*/
-/*    transition: all 0.1s ease-in-out;*/
-/*}*/
+.buttonComment {
+    float: right;
+    /*display: inline;*/
+    position: relative;
+    padding: 5px 10px;
+    border-radius: 18px;
+    background-color: #99CCF2;
+    border: solid 1px transparent;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
 
-/*.buttonComment:hover {*/
-/*    background-color: #1c89ff;*/
+.buttonComment:hover {
+    background-color: #1c89ff;
 
-/*}*/
-/*.comments{*/
+}
+
+.like {
+    float: left;
+
+    display: inline-block;
+}
+
+/*.heart{*/
+/*    float: left;*/
 /*    display: inline-block;*/
-/*    !*cursor: pointer;*!*/
-/*    color: red;*/
-/*    height: 0px;*/
-/*    width: 0px;*/
-/*}*/
-/*.heart {*/
-/*    display: inline-block;*/
 /*    cursor: pointer;*/
-/*    height: 50px;*/
-/*    width: 50px;*/
-/*    background-image:url( 'https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');*/
-/*    !*background-position: left;*!*/
-/*    background-repeat:no-repeat;*/
-/*    background-size:2900%;*/
+/*    height: 40px;*/
+/*    width: 40px;*/
+/*    !*align-content: center;*!*/
+/*    background-image: url('https://abs.twimg.com/a/1446542199/img/t1/web_heart_animation.png');*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: 2900%;*/
+/*    scale: 2;*/
 /*}*/
 
-/*.heart:hover {*/
-/*    background-position:right;*/
-/*}*/
+.far {
+    color: #AAB8C2;
+    padding: 11px;
+    scale: 1.5;
+}
 
-/*.is_animating {*/
-/*    animation: heart-burst .8s steps(28) 1;*/
-/*}*/
+.far:hover {
+    color: #1c89ff;
+    /*background-color: #99CCF2;*/
+}
 
-/*@keyframes heart-burst {*/
-/*    from {background-position:left;}*/
-/*    to { background-position:right;}*/
-/*}*/
+.is_animating {
+    color:red;
+    animation: heart-burst .8s steps(28) 1;
+}
+.tooltiptext {
+    visibility: hidden;
+    height: 15px;
+    width: 60px;
+    background-color: #F64C67;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 0px 5px;
+    font-size: 10px;
+    font-weight: 400;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 80%;
+    left: 130%;
+    margin-left: -60px;
+}
+
+
+
+@keyframes heart-burst {
+    from {
+        background-position: left;
+    }
+    to {
+        background-position: right;
+    }
+}
+
+.numberOfComments{
+    /*float: left;*/
+    display: inline-block;
+}

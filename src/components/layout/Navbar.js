@@ -22,7 +22,6 @@ function NavigationBar(props) {
         if (window.web3) {
             console.log('web3')
             window.web3 = new Web3(window.web3.currentProvider)
-            // setAccount(accounts[0])
             props.setAccount(await window.web3.eth.getAccounts())
         } else {
             window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
@@ -45,8 +44,6 @@ function NavigationBar(props) {
                                 </div>
                             ) : (
                                 <div>
-
-
                                     <div variant="outline-primary" className={classes.buttonConnected}>
                                         Signed in
                                         as: {(props.account).toString().substr(0, 6)}...{(props.account).toString().substr(-4, 4)}

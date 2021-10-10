@@ -15,7 +15,7 @@ class Banner extends React.Component {
                 </div>
                     <div id={classes.type}>
                         <Typical
-                            loop={1} // Infinity
+                            loop={Infinity} // Infinity
                             wrapper={"b"}
                             steps={[' Post', 1000, ' Comment', 1000, ' Interact', 1000]}
                         />
