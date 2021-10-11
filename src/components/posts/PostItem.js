@@ -49,10 +49,15 @@ class PostItem extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <span style={mystyle} onClick={() => this.clickListener("heart".concat(this.props.id))}
-                              id={"heart".concat(this.props.id)}>
-                           </span>
+                        {!this.props.account ? <div/> :
+                            <span style={mystyle} onClick={() => {
+                                this.clickListener("heart".concat(this.props.id))
+                                this.props.likePost(this.props.id,this.props.author)
 
+                            }}
+                                  id={"heart".concat(this.props.id)}>
+                           </span>
+                        }
                         <div className="numberOfComments" onClick={this.clickHandler}> <i className="far fa-comment"/> {this.props.numberOfComments}</div>
 
                         <>

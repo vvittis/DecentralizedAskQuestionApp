@@ -7,12 +7,16 @@ import PostSection from "../posts/PostSection";
 import Web3 from "web3";
 import Blog from "../../abis/Blog.json";
 
+const easABI = require("../../abis/EAS.json");
+const easAddress = "0xBf49E19254DF70328C6696135958C94CD6cd0430";
+export const CHAINID = 1;
+const usernameUUID =
+    "0x905ec5d9ea1aa3b8f5b42ce85ee7c72d6265ff1fa9b4a9aebe5f6716e1fefeb1";
 
 class Layout extends Component {
 
 
     async componentWillMount() {
-
         await this.fetchData()
     }
 
@@ -32,6 +36,7 @@ class Layout extends Component {
             if (networkData) {
                 this.setState({loading: false})
                 this.setState({postLoading: false})
+
                 const blogPost = new web3.eth.Contract(Blog.abi, networkData.address)
                 this.setState({blogPost: blogPost})
                 const postCount = await blogPost.methods.postCount().call()
@@ -80,6 +85,13 @@ class Layout extends Component {
         this.setState({accountAddress: input})
     }
 
+    async likePost(postid, author) {
+        console.log(postid)
+        console.log(author)
+        console.log(this.props.account.toString())
+        console.log("Inside likePost")
+    }
+
     constructor(props) {
         super(props)
         this.state = {
@@ -96,6 +108,7 @@ class Layout extends Component {
         this.createPost = this.createPost.bind(this)
         this.commentPost = this.commentPost.bind(this)
         this.setUserAddress = this.setUserAddress.bind(this)
+        this.likePost = this.likePost.bind(this)
     }
 
     render() {
@@ -111,6 +124,7 @@ class Layout extends Component {
 
                     /> </Col>
                     <Col lg={8} className={classes.col8}> <PostSection
+                        likePost={this.likePost}
                         commentLoading={this.state.commentLoading}
                         blogPost={this.state.blogPost}
                         account={this.props.account}

@@ -77,11 +77,13 @@ class PostSection extends Component {
                                 {this.props.postLoading ?
                                     <div id="loader" className="text-center mt-5"><p>Loading Posts...</p></div> :
                                     <div className={classes.containerPost}>
-                                        <div className={classes.title}>Posts</div>
-                                        <PostList commentClicked={this.onClickHandler}
-                                                  account={this.props.account}
-                                                  commentPost={this.props.commentPost}
-                                                  posts={this.props.postSectionPosts}/>
+                                        <div className={classes.titlePosts}>Posts</div>
+                                        <PostList
+                                            likePost={this.props.likePost}
+                                            commentClicked={this.onClickHandler}
+                                            account={this.props.account}
+                                            commentPost={this.props.commentPost}
+                                            posts={this.props.postSectionPosts}/>
                                         <div className={classes.scrollSection}>
                                                                 <span className={classes.scrollIcon}>
                                                                        <span className={classes.scrollIconDot}/>
@@ -95,7 +97,7 @@ class PostSection extends Component {
                                     <>
                                         {!this.state.commentShow ? <div/> :
                                             <div className={classes.containerPost}>
-                                                <div className={classes.title}>Answers</div>
+                                                <div className={classes.titleAnswers}>Answers</div>
 
                                                 <CommentList
                                                     comments={this.state.comments}

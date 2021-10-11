@@ -9,6 +9,7 @@ class PostList extends Component {
                 {this.props.children}
                 {this.props.posts.map(post => (
                     <PostItem
+                        likePost={this.props.likePost}
                         commentClicked={this.props.commentClicked}
                         account={this.props.account}
                         postListCommentPost={this.props.commentPost}
