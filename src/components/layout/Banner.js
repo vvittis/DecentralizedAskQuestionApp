@@ -1,8 +1,9 @@
 import classes from './Banner.module.css'
-import React from 'react'
+import React, {Component} from 'react'
 import Typical from 'react-typical';
+import FormSection from "../ui/FormSection";
 
-class Banner extends React.Component {
+class Banner extends Component {
 
     render() {
         return (
@@ -11,15 +12,19 @@ class Banner extends React.Component {
 
                 <div id={classes.heading} className={' p-0 pt-sm-5'}>
 
-                    A Chat App <br/> where you can
+                    An Ask Question App <br/> where you can
                 </div>
                     <div id={classes.type}>
                         <Typical
                             loop={Infinity} // Infinity
                             wrapper={"b"}
-                            steps={[' Post', 1000, ' Comment', 1000, ' Interact', 1000]}
+                            steps={['Ask', 1000, 'Answer', 1000, 'Like', 1000]}
                         />
                     </div>
+                {!this.props.input ? <div/>
+                    :
+                    <FormSection createPost={this.props.createpost} address={this.props.input}/>
+                }
             </div>
         )
     }

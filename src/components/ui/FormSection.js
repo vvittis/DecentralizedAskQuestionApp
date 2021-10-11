@@ -32,40 +32,43 @@ class FormSection extends Component {
                           const content = this.postContent.value
                           this.titleContent.value = ""
                           this.postContent.value = ""
-
                           this.props.createPost(title, content)
                       }}
                 >
-
                     <div class="useProfile">
                         <ImageProfile class="image" width={'50'} height={'50'} account={this.props.address.toString()}/>
                         <div
                             class={"name"}>{(this.props.address).toString()}
                         </div>
                     </div>
-
+                    <hr
+                        style={{
+                            color: 'grey',
+                            // backgroundColor: color,
+                            height: 5
+                        }}
+                    />
                     <div class="postInputContainer">
                         <input
                             id="postContent"
                             type="text"
                             ref={(input) => { this.titleContent = input }}
                             className="form-control"
-                            placeholder="Add your Title"
+                            placeholder="What is your Question?"
                             required />
                         <p>&nbsp;</p>
 
                     <textarea rows="3"
                               id="postContent"
-
                               type="text"
                               ref={(textarea) => {
                                   this.postContent = textarea
                               }}
                               className="form-control"
-                              placeholder="What's on your mind?"
+                              placeholder="Explain what you are looking for..."
                               required/>
                     </div>
-                    <button type="submit" class="button" onClick={this.onClickHandler}>Post</button>
+                    <button type="submit" class="button" onClick={this.onClickHandler}>Ask</button>
                     <div class="loader">
                         <div class="check">
                             <span class="check-one"/>

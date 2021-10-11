@@ -16,13 +16,18 @@ function NavigationBar(props) {
             console.log('ETHEREUM')
             window.web3 = new Web3(window.ethereum);
             await window.ethereum.enable()
+            const user = await window.web3.eth.getAccounts()
             props.setAccount(await window.web3.eth.getAccounts())
+            props.userAccount(user.toString())
             // setAccount(accounts[0])
-        }
-        if (window.web3) {
+        } else if (window.web3) {
             console.log('web3')
             window.web3 = new Web3(window.web3.currentProvider)
+            const user = await window.web3.eth.getAccounts()
             props.setAccount(await window.web3.eth.getAccounts())
+
+            props.userAccount(user.toString())
+
         } else {
             window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
             // <button type="button" class="btn btn-primary">Connect with MetaMask</button>

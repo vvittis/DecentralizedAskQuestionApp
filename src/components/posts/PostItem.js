@@ -5,21 +5,20 @@ import CardFormatter from "../ui/CardFormatter";
 import ImageProfile from "../ui/ImageProfile";
 import './PostItem.css'
 import $ from 'jquery';
+import AddCommentModal from "../comments/AddCommentModal";
 
 class PostItem extends Component {
 
 
-    async onClickHandler() {
 
+    async clickListener(input) { $('#'.concat(input)).toggleClass('is_animating');   }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalShow: false,
+        };
     }
-
-    async clickListener(input) {
-
-        $('#'.concat(input)).toggleClass('is_animating');
-
-
-    }
-
 
     render() {
         const mystyle = {
@@ -36,7 +35,7 @@ class PostItem extends Component {
 
         return (
             <CardFormatter>
-                <Card onClick={this.onClickHandler} key={this.props.id}>
+                <Card onClick={this.props.onClickHandler} key={this.props.id}>
                     <Card.Header> <ImageProfile class="image" width={'50'} height={'50'}
                                                 account={this.props.author.toString()}/> {this.props.author}
                     </Card.Header>
@@ -47,11 +46,27 @@ class PostItem extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                        <span style={mystyle}  onClick={() => this.clickListener("heart".concat(this.props.id))} id={"heart".concat(this.props.id)}>
-                            <span className="tooltiptext">TIP 0.1 ETH</span></span>
-                        <i className="far fa-comment"/>
-                        <div className="numberOfComments"> {this.props.numberOfComments}</div>
-                        <button class="buttonComment"> Comment</button>
+                        <span style={mystyle} onClick={() => this.clickListener("heart".concat(this.props.id))}
+                              id={"heart".concat(this.props.id)}>
+                           </span>
+
+                        <div className="numberOfComments" onClick={this.props.commentClicked}> <i className="far fa-comment"/> {this.props.numberOfComments}</div>
+
+                        <>
+                            {!this.props.account? <div/>:
+                            <button onClick={() => this.setState({modalShow: true})} class="buttonComment"> Answer
+                            </button>
+                                }
+                            <AddCommentModal
+                                postItemCommentPost={this.props.postListCommentPost}
+                                postid = {this.props.id}
+                                show={this.state.modalShow}
+                                post={this.props.content}
+                                onHide={() => {
+                                    this.setState({modalShow: false})
+                                }}
+                            />
+                        </>
                     </Card.Footer>
                 </Card>
 
