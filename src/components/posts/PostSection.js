@@ -1,28 +1,56 @@
 import classes from './PostSection.module.css'
-import React, {Component, useEffect} from 'react'
-import Web3 from 'web3';
-import {Container, Col, FloatingLabel, FormControl, Row} from 'react-bootstrap'
-import CardFormatter from "../ui/CardFormatter";
-import Blog from '../../abis/Blog.json'
+import React, {Component} from 'react'
+import {Container, Col, Row} from 'react-bootstrap'
 import PostList from "./PostList";
-import NavigationBar from "../layout/Navbar";
-import Banner from "../layout/Banner";
-import FormSection from "../ui/FormSection";
+// import CommentSection from '../comments/CommentSection'
+import CommentList from "../comments/CommentList";
+
+// import classes1 from "./PostSection.module.css";
 
 
 class PostSection extends Component {
 
+    async componentWillMount() {
+        if (this.props.commentLoading) {
+            console.log(this.props.commentLoading)
+        }
+    }
+
+
+    async onClickHandler(postId) {
+        // this.state.postid = postId
+
+        this.setState({commentShow: true})
+
+        this.setState({postid: postId}, async function () {
+            const post = await this.props.blogPost.methods.posts(this.state.postid).call()
+
+            this.setState({commentsLength: post.numberOfComments}, async function () {
+
+                this.setState({comments: []})
+                for (var i = 1; i <= this.state.commentsLength; i++) {
+                    const comment = await this.props.blogPost.methods.getComment(post.id, i).call();
+                    this.setState({
+                        comments: [...this.state.comments, comment]
+                    })
+                }
+                console.log(this.state.comments)
+            })
+
+        })
+
+    }
+
     constructor(props) {
         super(props);
         this.state = {
-            commentShow: false
-        };
-        this.onClickHandler = this.onClickHandler.bind(this)
-    }
+            commentShow: false,
+            commentsLength: 0,
+            postid: 0,
+            comments: []
+        }
 
-    async onClickHandler() {
-        this.setState({commentShow: !this.state.commentShow})
-        console.log(this.state.commentShow)
+        this.onClickHandler = this.onClickHandler.bind(this)
     }
 
     render() {
@@ -37,7 +65,7 @@ class PostSection extends Component {
                 <div className={classes.cube}/>
                 <div className={classes.cube}/>
 
-                {this.props.loading ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
+                {this.props.loading ? <div id="loader" className="text-center mt-5"><p>Loading Posts...</p></div>
                     :
                     (<Container fluid className={classes.containerFluid}>
 
@@ -62,8 +90,27 @@ class PostSection extends Component {
                                     </div>
                                 }
                             </Col>
-                            <Col>
-                                {!this.state.commentShow ? <h1> No comments</h1> : <h1> Comments</h1>}
+                            <Col className={classes.containerPost}>
+                                {this.props.commentLoading ? <div> Loading Comments...</div> :
+                                    <>
+                                        {!this.state.commentShow ? <div/> :
+                                            <div className={classes.containerPost}>
+                                                <div className={classes.title}>Answers</div>
+
+                                                <CommentList
+                                                    comments={this.state.comments}
+                                                />
+                                                <div className={classes.scrollSection}>
+                                    <span className={classes.scrollIcon}>
+                                    <span className={classes.scrollIconDot}/>
+                                    </span>
+                                                </div>
+                                            </div>
+
+                                        }
+                                    </>
+                                }
+
 
                             </Col>
                         </Row>

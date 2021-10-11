@@ -1,0 +1,13 @@
+.list {
+    list-style: none;
+    /*margin: 10px;*/
+    padding-left: 40px;
+    width: auto;
+    height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    border-radius: 10px 10px 0px 0px;
+    background: #EDEDED;
+}
+

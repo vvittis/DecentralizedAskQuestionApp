@@ -10,14 +10,12 @@ class AddCommentModal extends Component {
                 {...this.props}
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
+                centered>
                 <Modal.Header closeButton>
                     <Modal.Title id="contained-modal-title-vcenter">
                         Help Other by Answering their Questions
                     </Modal.Title>
                 </Modal.Header>
-
                 <Modal.Body>
                     <h5>The Question is:</h5>
                     <h6>{this.props.post}</h6>
@@ -27,11 +25,10 @@ class AddCommentModal extends Component {
                             const postId = this.props.postid
                             const content = this.answerContent.value
                             // console.log(postId.toNumber(),content.toString())
-                            this.props.postItemCommentPost(postId, content)
+                            this.props.postitemcommentpost(postId, content)
+                            this.props.asnwerbutton()
                         }}>
-
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            {this.props.postid}
                             <div className="postInputContainer">
                                 <textarea
                                     id="postContent"
@@ -49,9 +46,7 @@ class AddCommentModal extends Component {
                             <Button type="submit" onClick={this.props.onHide}>Answer</Button>
                         </Modal.Footer>
                     </Form>
-
                 </Modal.Body>
-
             </Modal>
         );
     }

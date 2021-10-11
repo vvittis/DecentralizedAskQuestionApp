@@ -1,7 +1,6 @@
 import classes from './Layout.module.css'
 import React, {Component} from 'react'
 import {Container, Row, Col} from 'react-bootstrap'
-import Button from "react-bootstrap/Button";
 import NavigationBar from "./Navbar";
 import Banner from "./Banner";
 import PostSection from "../posts/PostSection";
@@ -27,14 +26,9 @@ class Layout extends Component {
             // if (window.web3) {
             // window.web3 = new Web3(window.web3.currentProvider)
             // window.web3 = new Web3(window.ethereum)
-
-            console.log('use effect')
             const web3 = window.web3
-            console.log(this.props.account)
             const networkId = await web3.eth.net.getId()
-            console.log(networkId.toString())
             const networkData = Blog.networks[networkId]
-            console.log(networkData)
             if (networkData) {
                 this.setState({loading: false})
                 this.setState({postLoading: false})
@@ -42,7 +36,6 @@ class Layout extends Component {
                 this.setState({blogPost: blogPost})
                 const postCount = await blogPost.methods.postCount().call()
                 this.setState({postCount: postCount})
-                console.log("Number of Posts: " + this.state.postCount)
                 // Load Posts
                 this.setState({posts: []})
                 for (var i = 1; i <= postCount; i++) {
@@ -64,31 +57,29 @@ class Layout extends Component {
 
     async createPost(title, content) {
         this.setState({postLoading: true})
-        this.state.blogPost.methods.createPost(title, content).send({from:this.props.account.toString()})
+        this.state.blogPost.methods.createPost(title, content).send({from: this.props.account.toString()})
             .once('receipt', (receipt) => {
                 this.fetchData()
-
                 this.setState({postLoading: false})
                 console.log(this.state.accountAddress)
             })
     }
 
     async commentPost(id, content) {
-        console.log("uber drifer")
-        console.log(id)
-        console.log(content)
         this.setState({postLoading: true})
+        this.setState({commentLoading: true})
         this.state.blogPost.methods.commentPost(id, content).send({from: this.state.accountAddress})
             .once('receipt', (receipt) => {
                 this.fetchData()
+                this.setState({commentLoading: false})
                 this.setState({postLoading: false})
             })
     }
-    async setUserAddress(input){
-        console.log("Inside "+input)
-        this.setState({accountAddress: input })
-        console.log("Here"+ this.state.accountAddress)
+
+    async setUserAddress(input) {
+        this.setState({accountAddress: input})
     }
+
     constructor(props) {
         super(props)
         this.state = {
@@ -98,6 +89,7 @@ class Layout extends Component {
             postCount: 0,
             posts: [],
             loading: true,
+            commentLoading: false,
             postLoading: true
         }
 
@@ -109,8 +101,9 @@ class Layout extends Component {
     render() {
         return (
 
-            <Container fluid className={classes.container} className={"more-pens"}>
-                <NavigationBar userAccount = {this.setUserAddress} account={this.props.account} setAccount={this.props.setAccount}/>
+            <Container fluid className={classes.container}>
+                <NavigationBar userAccount={this.setUserAddress} account={this.props.account}
+                               setAccount={this.props.setAccount}/>
                 <Row className={classes.main}>
                     <Col lg={4} className={classes.col4}> <Banner
                         createpost={this.createPost}
@@ -118,6 +111,8 @@ class Layout extends Component {
 
                     /> </Col>
                     <Col lg={8} className={classes.col8}> <PostSection
+                        commentLoading={this.state.commentLoading}
+                        blogPost={this.state.blogPost}
                         account={this.props.account}
                         loading={this.state.loading}
                         postLoading={this.state.postLoading}

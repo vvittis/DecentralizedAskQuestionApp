@@ -1,5 +1,5 @@
 pragma solidity ^0.5.4;
-
+pragma experimental ABIEncoderV2;
 contract Blog {
 
     address owner;
@@ -11,6 +11,7 @@ contract Blog {
     //    Comment [] public comments;
     /* Structs */
     struct Comment {
+        uint256 commentId;
         address author;
         string content;
 
@@ -63,6 +64,7 @@ contract Blog {
         post.id = postCount;
         post.content = _content;
         post.tipAmount = 0;
+        post.numberOfComments = 0;
 
         emit PostCreated(postCount, _content, 0, msg.sender);
     }
@@ -70,18 +72,20 @@ contract Blog {
 
     function commentPost(uint256 _postId, string memory _content) public {
         require(bytes(_content).length > 0);
-
         Post storage _commentedPost = posts[_postId];
         _commentedPost.numberOfComments++;
-
         comments[_postId][_commentedPost.numberOfComments] = Comment({
+        commentId: _commentedPost.numberOfComments,
         author : msg.sender,
         content : _content
         });
+
         emit CommentAdded(_postId, msg.sender, _content);
     }
 
-
+    function getComment(uint256 _postId, uint256 _commentId) public view returns (Comment memory) {
+        return comments[_postId][_commentId];
+    }
     function tipPost(uint256 _postId) public payable {
         require(msg.value > 0);
         Post storage _tippedPost = posts[_postId];

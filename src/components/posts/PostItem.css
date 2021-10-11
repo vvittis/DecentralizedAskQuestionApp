@@ -58,26 +58,6 @@
     color:red;
     animation: heart-burst .8s steps(28) 1;
 }
-.tooltiptext {
-    visibility: hidden;
-    height: 15px;
-    width: 60px;
-    background-color: #F64C67;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 0px 5px;
-    font-size: 10px;
-    font-weight: 400;
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
-    top: 80%;
-    left: 130%;
-    margin-left: -60px;
-}
-
-
 
 @keyframes heart-burst {
     from {

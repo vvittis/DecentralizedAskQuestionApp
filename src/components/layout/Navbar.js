@@ -2,10 +2,8 @@ import React from 'react'
 import {Container, Navbar, Button} from "react-bootstrap";
 import classes from './Navbar.module.css'
 import Web3 from "web3";
-import Identicon from 'identicon.js'
 import ImageProfile from "../ui/ImageProfile";
 
-// import Button from '../ui/Button'
 
 function NavigationBar(props) {
 
@@ -13,7 +11,6 @@ function NavigationBar(props) {
     const connectWallet = async (e) => {
         e.preventDefault()
         if (window.ethereum) {
-            console.log('ETHEREUM')
             window.web3 = new Web3(window.ethereum);
             await window.ethereum.enable()
             const user = await window.web3.eth.getAccounts()
@@ -21,7 +18,6 @@ function NavigationBar(props) {
             props.userAccount(user.toString())
             // setAccount(accounts[0])
         } else if (window.web3) {
-            console.log('web3')
             window.web3 = new Web3(window.web3.currentProvider)
             const user = await window.web3.eth.getAccounts()
             props.setAccount(await window.web3.eth.getAccounts())

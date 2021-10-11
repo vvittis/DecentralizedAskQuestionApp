@@ -1,20 +1,13 @@
 import ImageProfile from "./ImageProfile";
-// import classes from "./FormStyle.css";
-import React, {Form, Component} from "react";
+import React, {Component} from "react";
 import './FormStyle.css';
-import $ from 'jquery';
 class FormSection extends Component {
 
 
     async onClickHandler() {
-        var btn = document.querySelector('.button'),
-            loader = document.querySelector('.loader'),
+        var loader = document.querySelector('.loader'),
             check = document.querySelector('.check');
         loader.classList.add("active");
-        // btn.addEventListener("click", function () {
-        //     loader.classList.add("active");
-        // });
-
         loader.addEventListener("animationend", function () {
             check.classList.add("active");
         });
@@ -24,8 +17,8 @@ class FormSection extends Component {
 
     render() {
         return (
-            <div class="outterForm">
-                <form class="writePostContainer"
+            <div className="outterForm">
+                <form className="writePostContainer"
                       onSubmit={(event) => {
                           event.preventDefault()
                           const title = this.titleContent.value
@@ -35,10 +28,10 @@ class FormSection extends Component {
                           this.props.createPost(title, content)
                       }}
                 >
-                    <div class="useProfile">
-                        <ImageProfile class="image" width={'50'} height={'50'} account={this.props.address.toString()}/>
+                    <div className="useProfile">
+                        <ImageProfile className="image" width={'50'} height={'50'} account={this.props.address.toString()}/>
                         <div
-                            class={"name"}>{(this.props.address).toString()}
+                            className={"name"}>{(this.props.address).toString()}
                         </div>
                     </div>
                     <hr
@@ -48,7 +41,7 @@ class FormSection extends Component {
                             height: 5
                         }}
                     />
-                    <div class="postInputContainer">
+                    <div className="postInputContainer">
                         <input
                             id="postContent"
                             type="text"
@@ -68,11 +61,11 @@ class FormSection extends Component {
                               placeholder="Explain what you are looking for..."
                               required/>
                     </div>
-                    <button type="submit" class="button" onClick={this.onClickHandler}>Ask</button>
-                    <div class="loader">
-                        <div class="check">
-                            <span class="check-one"/>
-                            <span class="check-two"/>
+                    <button type="submit" className="button" onClick={this.onClickHandler}>Ask</button>
+                    <div className="loader">
+                        <div className="check">
+                            <span className="check-one"/>
+                            <span className="check-two"/>
                         </div>
                     </div>
                 </form>
