@@ -24,7 +24,7 @@ class Layout extends Component {
     async fetchData() {
 
         if (window.ethereum) {
-
+            console.log("Inisde Eth")
             window.web3 = new Web3(window.ethereum)
             // } else
             // if (window.web3) {
@@ -32,13 +32,18 @@ class Layout extends Component {
             // window.web3 = new Web3(window.ethereum)
             const web3 = window.web3
             const networkId = await web3.eth.net.getId()
+            console.log(networkId)
             const networkData = Blog.networks[networkId]
+            console.log(networkData)
             if (networkData) {
                 this.setState({loading: false})
                 this.setState({postLoading: false})
 
                 const blogPost = new web3.eth.Contract(Blog.abi, networkData.address)
+                console.log("Hi")
+                console.log(blogPost)
                 this.setState({blogPost: blogPost})
+                console.log(this.state.blogPost)
                 const postCount = await blogPost.methods.postCount().call()
                 this.setState({postCount: postCount})
                 // Load Posts
