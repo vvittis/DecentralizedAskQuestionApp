@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9e39c797-9b3a-45d7-99f5-e46ac53ee752" name="Changes" comment="New Commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/asset-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/asset-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/build/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/precache-manifest.bc7d715258e320e19e756424d0efd127.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/service-worker.js" beforeDir="false" afterPath="$PROJECT_DIR$/build/service-worker.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -147,7 +151,7 @@
       <workItem from="1633769840742" duration="6924000" />
       <workItem from="1633778766790" duration="32056000" />
       <workItem from="1633850633869" duration="15630000" />
-      <workItem from="1633873926229" duration="49509000" />
+      <workItem from="1633873926229" duration="51448000" />
     </task>
     <task id="LOCAL-00001" summary="New Commit">
       <created>1633446886759</created>
