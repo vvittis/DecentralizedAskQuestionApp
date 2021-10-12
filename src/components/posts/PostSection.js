@@ -12,7 +12,7 @@ class PostSection extends Component {
 
     async componentWillMount() {
         if (this.props.commentLoading) {
-            console.log(this.props.commentLoading)
+            // console.log(this.props.commentLoading)
         }
     }
 
@@ -34,7 +34,7 @@ class PostSection extends Component {
                         comments: [...this.state.comments, comment]
                     })
                 }
-                console.log(this.state.comments)
+                // console.log(this.state.comments)
             })
 
         })

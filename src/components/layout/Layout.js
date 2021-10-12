@@ -6,10 +6,12 @@ import Banner from "./Banner";
 import PostSection from "../posts/PostSection";
 import Web3 from "web3";
 import Blog from "../../abis/Blog.json";
-
+const BigNumber = require('bignumber.js');
 const easABI = require("../../abis/EAS.json");
 const easAddress = "0xBf49E19254DF70328C6696135958C94CD6cd0430";
-export const CHAINID = 1;
+const zeroAddress = "0x0000000000000000000000000000000000000000000000000000000000000000";
+const maxAddress = "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+export const CHAINID = 4;
 const usernameUUID =
     "0x905ec5d9ea1aa3b8f5b42ce85ee7c72d6265ff1fa9b4a9aebe5f6716e1fefeb1";
 
@@ -32,18 +34,15 @@ class Layout extends Component {
             // window.web3 = new Web3(window.ethereum)
             const web3 = window.web3
             const networkId = await web3.eth.net.getId()
-            console.log(networkId)
             const networkData = Blog.networks[networkId]
-            console.log(networkData)
             if (networkData) {
                 this.setState({loading: false})
                 this.setState({postLoading: false})
 
                 const blogPost = new web3.eth.Contract(Blog.abi, networkData.address)
-                console.log("Hi")
-                console.log(blogPost)
+
                 this.setState({blogPost: blogPost})
-                console.log(this.state.blogPost)
+                // console.log(this.state.blogPost)
                 const postCount = await blogPost.methods.postCount().call()
                 this.setState({postCount: postCount})
                 // Load Posts
@@ -87,14 +86,29 @@ class Layout extends Component {
     }
 
     async setUserAddress(input) {
+
+
         this.setState({accountAddress: input})
     }
 
     async likePost(postid, author) {
+
+        const signer = this.props.account.toString()
         console.log(postid)
         console.log(author)
-        console.log(this.props.account.toString())
-        console.log("Inside likePost")
+        console.log(signer)
+
+        const web3 = window.web3
+        const easContractSign = new  web3.eth.Contract(easABI,easAddress, signer);
+        var t = Boolean(true);
+        const encoded = web3.eth.abi.encodeParameters(['bool','uint256'], [t, postid]);
+        return await easContractSign.methods.attest(
+            author,
+            usernameUUID,
+            maxAddress,
+            zeroAddress,
+            encoded).send({from: this.state.accountAddress})
+
     }
 
     constructor(props) {
