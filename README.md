@@ -1,4 +1,4 @@
-# An Ask Question App
+# An Ask Question App on top of Ethereum Network
 [Live Demo](https://billethchat.xyz/)
 
 
